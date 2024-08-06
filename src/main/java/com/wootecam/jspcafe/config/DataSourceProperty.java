@@ -14,6 +14,7 @@ public class DataSourceProperty {
     public DataSourceProperty(final String profileKey) {
         String profile = System.getenv(profileKey);
 
+        log.info(profile);
         try {
             if (profile == null) {
                 properties.load(getClass().getClassLoader().getResourceAsStream("config/datasource.properties"));

@@ -1,0 +1,50 @@
+plugins {
+    id 'java'
+    id 'war'
+}
+
+group 'com.wootecam'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+ext {
+    junitVersion = '5.10.0'
+}
+
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}
+
+dependencies {
+    // db
+    implementation 'com.mysql:mysql-connector-j:8.2.0'
+    implementation 'com.h2database:h2:2.2.224'
+    implementation 'com.zaxxer:HikariCP:5.1.0'
+
+    // jackson(objecetMapper)
+    implementation 'com.fasterxml.jackson.core:jackson-databind:2.17.1'
+    implementation 'com.fasterxml.jackson.datatype:jackson-datatype-jsr310'
+
+    // jstl
+    implementation 'jakarta.servlet.jsp.jstl:jakarta.servlet.jsp.jstl-api:3.0.0'
+    implementation 'org.glassfish.web:jakarta.servlet.jsp.jstl:3.0.1'
+
+    // logging
+    implementation('ch.qos.logback:logback-classic:1.5.6')
+
+    // servlet
+    implementation('jakarta.servlet:jakarta.servlet-api:6.0.0')
+
+    // test
+    testImplementation platform('org.junit:junit-bom:5.10.0')
+    testImplementation('org.junit.jupiter:junit-jupiter')
+    testImplementation platform('org.assertj:assertj-bom:3.25.1')
+    testImplementation('org.assertj:assertj-core')
+}
+
+test {
+    useJUnitPlatform()
+}
